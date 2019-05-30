@@ -20,11 +20,7 @@ class Steps extends Component {
         const currentStep = this.props.steps[this.state.currentStepIndex];
         return (
             <div className="step">
-                <img
-                    src={`${window.location.origin}/images/${currentStep.image}`}
-                    alt={currentStep.imageAltText}
-                    className="image"
-                />
+                <img src={currentStep.image} alt={currentStep.imageAltText} className="image" />
                 <div className="text">
                     <h1 className="title">{currentStep.title}</h1>
                     <div className="description-wrapper">
