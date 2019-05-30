@@ -1,0 +1,74 @@
+@import './_presets.scss';
+
+.steps {
+  height: 100%;
+
+  .step {
+    display: flex;
+    height: 100%;
+
+    .image {
+      flex-shrink: 1;
+      height: 600px;
+      border-radius: 20px;
+      -webkit-box-shadow: 0px 0px 52px -9px rgba(194, 194, 194, 0.8);
+      -moz-box-shadow: 0px 0px 52px -9px rgba(194, 194, 194, 0.8);
+      box-shadow: 0px 0px 52px -9px rgba(194, 194, 194, 0.8);
+    }
+
+    .text {
+      flex-grow: 1;
+      box-sizing: border-box;
+      padding: 1em 1.75em 1em;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+
+      .progress-wrapper {
+        width: 100%;
+        height: 5px;
+        border-radius: 5px;
+        overflow: hidden;
+        background-color: $transparent-1;
+        margin-top: 1em;
+
+        .progress {
+          background-color: $blue-2;
+          height: 100%;
+          transition: all 0.4s;
+        }
+      }
+
+      .title {
+        flex-shrink: 1;
+      }
+
+      .description-wrapper {
+        flex-grow: 1;
+
+        .description {
+          position: relative;
+          top: 50%;
+          transform: translateY(-50%);
+
+          line-height: 25px;
+        }
+      }
+
+      .buttons {
+        flex-shrink: 1;
+        max-width: 18em;
+
+        .button {
+          &:first-child {
+            float: left;
+          }
+
+          &:last-child {
+            float: right;
+          }
+        }
+      }
+    }
+  }
+}
