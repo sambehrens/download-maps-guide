@@ -1,3 +1,5 @@
+@import '_presets.scss';
+
 html,
 body,
 .root {
@@ -29,7 +31,14 @@ code {
   height: 600px;
   top: 50%;
   transform: translateY(-50%);
+
+  @media screen and (max-width: $mobile) {
+    top: 0;
+    transform: none;
+  }
 }
 
 @import 'buttons.scss';
+@import 'progressBar.scss';
+@import 'mobileSteps.scss';
 @import 'steps.scss';

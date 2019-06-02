@@ -6,7 +6,7 @@ import InstructionSteps from './InstructionSteps';
 function App() {
     return (
         <div className="app-container">
-            <Steps steps={InstructionSteps} />
+            <Steps stepSet={InstructionSteps} />
         </div>
     );
 }

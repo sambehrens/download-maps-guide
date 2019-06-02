@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Button from './Button';
 import _ from 'lodash';
 
+import Button from './Button';
+import ProgressBar from './ProgressBar';
+
+const MOBILE_WIDTH = 460;
+
 const propTypes = {
-    steps: PropTypes.array
+    stepSet: PropTypes.object
 };
 
 class Steps extends Component {
@@ -12,36 +16,94 @@ class Steps extends Component {
         super(props);
         this.state = {
             currentStepIndex: 0,
-            totalSteps: _.size(props.steps)
+            totalSteps: _.size(props.stepSet.steps)
         };
     }
 
-    getCurrentStep() {
-        const currentStep = this.props.steps[this.state.currentStepIndex];
+    componentDidMount() {
+        document.addEventListener('keydown', this.handleKeyDown);
+    }
+
+    componentWillUnmount() {
+        document.removeEventListener('keydown', this.handleKeyDown);
+    }
+
+    handleKeyDown = ({ keyCode: key }) => {
+        // forwards
+        if (key === 39 || key === 40) {
+            this.handleNextClick();
+        }
+        // backwards
+        if (key === 37 || key === 38) {
+            this.handleBackClick();
+        }
+    };
+
+    handleSliderClick = (_e, location) => {
+        if (location < 0) {
+            location = 0;
+        } else if (location >= 1) {
+            location = 0.99;
+        }
+        this.setState({ currentStepIndex: _.floor(location * this.state.totalSteps) });
+    };
+
+    getMobileStep({ title, description, image, imageAltText }) {
         return (
-            <div className="step">
-                <img src={currentStep.image} alt={currentStep.imageAltText} className="image" />
+            <div className="mobile-step">
                 <div className="text">
-                    <h1 className="title">{currentStep.title}</h1>
-                    <div className="description-wrapper">
-                        <p className="description">{currentStep.description}</p>
-                    </div>
+                    <h4 className="steps-title">{this.props.stepSet.title}</h4>
+                    <h1 className="title">{title}</h1>
+                    <p className="description">{description}</p>
+                </div>
+                <div className="image-container">
+                    <img src={image} alt={imageAltText} className="image" />
+                </div>
+                <div className="navigation-panel">
                     {this.getNavButtons()}
-                    <div className="progress-wrapper">
-                        <div
-                            className="progress"
-                            style={{
-                                width: `${_.round(((this.state.currentStepIndex + 1) / this.state.totalSteps) * 100)}%`
-                            }}
-                        />
-                    </div>
+                    {this.getProgressBar()}
                 </div>
             </div>
         );
     }
 
+    getCurrentStep() {
+        const currentStep = this.props.stepSet.steps[this.state.currentStepIndex];
+        // mobile
+        if (window.innerWidth <= MOBILE_WIDTH) {
+            return this.getMobileStep(currentStep);
+        }
+        return (
+            <div className="step">
+                <img src={currentStep.image} alt={currentStep.imageAltText} className="image" />
+                <div className="text">
+                    <h4 className="steps-title">{this.props.stepSet.title}</h4>
+                    <h1 className="title">{currentStep.title}</h1>
+                    <div className="description-wrapper">
+                        <p className="description">{currentStep.description}</p>
+                    </div>
+                    {this.getNavButtons()}
+                    {this.getProgressBar()}
+                </div>
+            </div>
+        );
+    }
+
+    getProgressBar() {
+        return (
+            <ProgressBar
+                id="steps-progress"
+                progress={(this.state.currentStepIndex + 1) / this.state.totalSteps}
+                onClick={this.handleSliderClick}
+                onSlide={this.handleSliderClick}
+            />
+        );
+    }
+
     handleBackClick = () => {
-        this.setState(({ currentStepIndex }) => ({ currentStepIndex: currentStepIndex - 1 }));
+        if (this.state.currentStepIndex > 0) {
+            this.setState(({ currentStepIndex }) => ({ currentStepIndex: currentStepIndex - 1 }));
+        }
     };
 
     getBackButton() {
@@ -58,7 +120,9 @@ class Steps extends Component {
     }
 
     handleNextClick = () => {
-        this.setState(({ currentStepIndex }) => ({ currentStepIndex: currentStepIndex + 1 }));
+        if (this.state.currentStepIndex < this.state.totalSteps - 1) {
+            this.setState(({ currentStepIndex }) => ({ currentStepIndex: currentStepIndex + 1 }));
+        }
     };
 
     getNextButton() {
@@ -83,7 +147,11 @@ class Steps extends Component {
     }
 
     render() {
-        return <div className="steps">{this.getCurrentStep()}</div>;
+        return (
+            <div className="steps" style={{ height: window.innerHeight }}>
+                {this.getCurrentStep()}
+            </div>
+        );
     }
 }
 
