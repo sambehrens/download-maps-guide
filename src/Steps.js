@@ -16,16 +16,19 @@ class Steps extends Component {
         super(props);
         this.state = {
             currentStepIndex: 0,
-            totalSteps: _.size(props.stepSet.steps)
+            totalSteps: _.size(props.stepSet.steps),
+            mobile: window.innerWidth <= MOBILE_WIDTH
         };
     }
 
     componentDidMount() {
         document.addEventListener('keydown', this.handleKeyDown);
+        window.addEventListener('resize', this.handleWindowResize);
     }
 
     componentWillUnmount() {
         document.removeEventListener('keydown', this.handleKeyDown);
+        window.removeEventListener('resize', this.handleWindowResize);
     }
 
     handleKeyDown = ({ keyCode: key }) => {
@@ -37,6 +40,10 @@ class Steps extends Component {
         if (key === 37 || key === 38) {
             this.handleBackClick();
         }
+    };
+
+    handleWindowResize = ({ currentTarget: { innerWidth } }) => {
+        this.setState({ mobile: innerWidth <= MOBILE_WIDTH });
     };
 
     handleSliderClick = (_e, location) => {
@@ -70,7 +77,7 @@ class Steps extends Component {
     getCurrentStep() {
         const currentStep = this.props.stepSet.steps[this.state.currentStepIndex];
         // mobile
-        if (window.innerWidth <= MOBILE_WIDTH) {
+        if (this.state.mobile) {
             return this.getMobileStep(currentStep);
         }
         return (
