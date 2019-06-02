@@ -147,11 +147,7 @@ class Steps extends Component {
     }
 
     render() {
-        return (
-            <div className="steps" style={{ height: window.innerHeight }}>
-                {this.getCurrentStep()}
-            </div>
-        );
+        return <div className="steps">{this.getCurrentStep()}</div>;
     }
 }
 
