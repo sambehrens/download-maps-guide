@@ -139,9 +139,8 @@ class Steps extends Component {
     }
 
     handleBackClick = () => {
-        this.setState({ imageLoading: true });
         if (this.state.currentStepIndex > 0) {
-            this.setState(({ currentStepIndex }) => ({ currentStepIndex: currentStepIndex - 1 }));
+            this.setState(({ currentStepIndex }) => ({ currentStepIndex: currentStepIndex - 1, imageLoading: true }));
         }
     };
 
@@ -159,9 +158,8 @@ class Steps extends Component {
     }
 
     handleNextClick = () => {
-        this.setState({ imageLoading: true });
         if (this.state.currentStepIndex < this.state.totalSteps - 1) {
-            this.setState(({ currentStepIndex }) => ({ currentStepIndex: currentStepIndex + 1 }));
+            this.setState(({ currentStepIndex }) => ({ currentStepIndex: currentStepIndex + 1, imageLoading: true }));
         }
     };
 
