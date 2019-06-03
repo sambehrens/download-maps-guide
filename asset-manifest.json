@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/download-maps-guide/static/css/main.4c61d296.chunk.css",
+    "main.css": "/download-maps-guide/static/css/main.06b3006c.chunk.css",
     "main.js": "/download-maps-guide/static/js/main.1dba5b64.chunk.js",
     "main.js.map": "/download-maps-guide/static/js/main.1dba5b64.chunk.js.map",
     "runtime~main.js": "/download-maps-guide/static/js/runtime~main.c927a3b1.js",
@@ -8,9 +8,9 @@
     "static/js/2.a83e42a3.chunk.js": "/download-maps-guide/static/js/2.a83e42a3.chunk.js",
     "static/js/2.a83e42a3.chunk.js.map": "/download-maps-guide/static/js/2.a83e42a3.chunk.js.map",
     "index.html": "/download-maps-guide/index.html",
-    "precache-manifest.5b934ca0e1401cd59b655a0d6b4c94d0.js": "/download-maps-guide/precache-manifest.5b934ca0e1401cd59b655a0d6b4c94d0.js",
+    "precache-manifest.ef5b724cf38c0b549696a93cb59d61be.js": "/download-maps-guide/precache-manifest.ef5b724cf38c0b549696a93cb59d61be.js",
     "service-worker.js": "/download-maps-guide/service-worker.js",
-    "static/css/main.4c61d296.chunk.css.map": "/download-maps-guide/static/css/main.4c61d296.chunk.css.map",
+    "static/css/main.06b3006c.chunk.css.map": "/download-maps-guide/static/css/main.06b3006c.chunk.css.map",
     "static/media/1-app-store.PNG": "/download-maps-guide/static/media/1-app-store.ebaf363d.PNG",
     "static/media/2-landing.PNG": "/download-maps-guide/static/media/2-landing.6d46963e.PNG",
     "static/media/3-search.PNG": "/download-maps-guide/static/media/3-search.32e19871.PNG",
