@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
+import classnames from 'classnames';
 
 import Button from './Button';
 import ProgressBar from './ProgressBar';
@@ -17,7 +18,8 @@ class Steps extends Component {
         this.state = {
             currentStepIndex: 0,
             totalSteps: _.size(props.stepSet.steps),
-            mobile: window.innerWidth <= MOBILE_WIDTH
+            mobile: window.innerWidth <= MOBILE_WIDTH,
+            imageLoading: true
         };
     }
 
@@ -52,8 +54,34 @@ class Steps extends Component {
         } else if (location >= 1) {
             location = 0.99;
         }
-        this.setState({ currentStepIndex: _.floor(location * this.state.totalSteps) });
+        const newStepIndex = _.floor(location * this.state.totalSteps);
+        if (this.state.currentStepIndex !== newStepIndex) {
+            this.setState({ currentStepIndex: newStepIndex, imageLoading: true });
+        }
     };
+
+    onImageLoad = () => {
+        console.log('set image loading to', false);
+        this.setState({ imageLoading: false });
+    };
+
+    getImageLoading() {
+        console.log('image loading is', this.state.imageLoading);
+        if (this.state.imageLoading) {
+            return <div className="image-placeholder" />;
+        }
+    }
+
+    getImage({ image, imageAltText }) {
+        return (
+            <img
+                src={image}
+                alt={imageAltText}
+                className={classnames('image', { loaded: !this.state.imageLoading })}
+                onLoad={this.onImageLoad}
+            />
+        );
+    }
 
     getMobileStep({ title, description, image, imageAltText }) {
         return (
@@ -64,7 +92,8 @@ class Steps extends Component {
                     <p className="description">{description}</p>
                 </div>
                 <div className="image-container">
-                    <img src={image} alt={imageAltText} className="image" />
+                    {this.getImageLoading()}
+                    {this.getImage({ image, imageAltText })}
                 </div>
                 <div className="navigation-panel">
                     {this.getNavButtons()}
@@ -75,19 +104,21 @@ class Steps extends Component {
     }
 
     getCurrentStep() {
-        const currentStep = this.props.stepSet.steps[this.state.currentStepIndex];
-        // mobile
+        const { title, description, image, imageAltText } = this.props.stepSet.steps[this.state.currentStepIndex];
         if (this.state.mobile) {
-            return this.getMobileStep(currentStep);
+            return this.getMobileStep({ title, description, image, imageAltText });
         }
         return (
             <div className="step">
-                <img src={currentStep.image} alt={currentStep.imageAltText} className="image" />
+                <div className="image-container">
+                    {this.getImageLoading()}
+                    {this.getImage({ image, imageAltText })}
+                </div>
                 <div className="text">
                     <h4 className="steps-title">{this.props.stepSet.title}</h4>
-                    <h1 className="title">{currentStep.title}</h1>
+                    <h1 className="title">{title}</h1>
                     <div className="description-wrapper">
-                        <p className="description">{currentStep.description}</p>
+                        <p className="description">{description}</p>
                     </div>
                     {this.getNavButtons()}
                     {this.getProgressBar()}
@@ -108,6 +139,7 @@ class Steps extends Component {
     }
 
     handleBackClick = () => {
+        this.setState({ imageLoading: true });
         if (this.state.currentStepIndex > 0) {
             this.setState(({ currentStepIndex }) => ({ currentStepIndex: currentStepIndex - 1 }));
         }
@@ -127,6 +159,7 @@ class Steps extends Component {
     }
 
     handleNextClick = () => {
+        this.setState({ imageLoading: true });
         if (this.state.currentStepIndex < this.state.totalSteps - 1) {
             this.setState(({ currentStepIndex }) => ({ currentStepIndex: currentStepIndex + 1 }));
         }

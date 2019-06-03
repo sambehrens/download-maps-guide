@@ -46,10 +46,16 @@
         max-height: 100%;
         width: auto;
         height: auto;
+        display: none;
 
         -webkit-box-shadow: 0px 0px 52px -9px rgba(194, 194, 194, 0.8);
         -moz-box-shadow: 0px 0px 52px -9px rgba(194, 194, 194, 0.8);
         box-shadow: 0px 0px 52px -9px rgba(194, 194, 194, 0.8);
+
+        &.loaded {
+          display: block;
+          animation: fade-in 0.5s;
+        }
       }
     }
 
@@ -70,5 +76,14 @@
         margin-bottom: 1em;
       }
     }
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
   }
 }

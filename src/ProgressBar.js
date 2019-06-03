@@ -31,6 +31,7 @@ class ProgressBar extends Component {
     };
 
     onSlide = e => {
+        e.preventDefault();
         const location = (e.clientX - this.offset) / this.offsetWidth;
         this.props.onSlide(e, location);
     };

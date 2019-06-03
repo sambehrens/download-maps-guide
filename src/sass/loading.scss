@@ -1,0 +1,30 @@
+@import '_presets.scss';
+
+.image-placeholder {
+  width: 277px;
+  height: 100%;
+  border-radius: 1em;
+  background-color: $transparent-2;
+
+  -webkit-animation: dots 1.5s infinite;
+  animation: dots 1.5s infinite;
+
+  @media screen and (max-width: $mobile) {
+    width: 60%;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes dots {
+  0% {
+    background-color: $transparent-1;
+  }
+  50% {
+    background-color: $transparent-2;
+  }
+  100% {
+    background-color: $transparent-1;
+  }
+}

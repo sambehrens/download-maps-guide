@@ -39,7 +39,12 @@ code {
   }
 }
 
+.hidden {
+  display: none;
+}
+
 @import 'buttons.scss';
 @import 'progressBar.scss';
+@import 'loading.scss';
 @import 'mobileSteps.scss';
 @import 'steps.scss';
