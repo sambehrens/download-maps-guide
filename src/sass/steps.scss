@@ -50,9 +50,10 @@
 
       .description-wrapper {
         flex-grow: 1;
+        position: relative;
 
         .description {
-          position: relative;
+          position: absolute;
           top: 50%;
           transform: translateY(-50%);
 
