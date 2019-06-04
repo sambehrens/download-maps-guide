@@ -4,27 +4,52 @@
   width: 277px;
   height: 100%;
   border-radius: 1em;
-  background-color: $transparent-2;
+  background: linear-gradient(315deg, transparent, $transparent-2);
+  background-size: 400% 400%;
 
-  -webkit-animation: dots 1.5s infinite;
-  animation: dots 1.5s infinite;
+  -webkit-animation: gradient 1.5s ease infinite;
+  -moz-animation: gradient 1.5s ease infinite;
+  animation: gradient 1.5s ease infinite;
 
   @media screen and (max-width: $mobile) {
-    width: 60%;
+    width: 50%;
+    max-width: 100%;
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
   }
 }
 
-@keyframes dots {
+@-webkit-keyframes gradient {
   0% {
-    background-color: $transparent-1;
+    background-position: 0% 0%;
   }
   50% {
-    background-color: $transparent-2;
+    background-position: 100% 100%;
   }
   100% {
-    background-color: $transparent-1;
+    background-position: 0% 0%;
+  }
+}
+@-moz-keyframes gradient {
+  0% {
+    background-position: 0% 0%;
+  }
+  50% {
+    background-position: 100% 100%;
+  }
+  100% {
+    background-position: 0% 0%;
+  }
+}
+@keyframes gradient {
+  0% {
+    background-position: 0% 0%;
+  }
+  50% {
+    background-position: 100% 100%;
+  }
+  100% {
+    background-position: 0% 0%;
   }
 }

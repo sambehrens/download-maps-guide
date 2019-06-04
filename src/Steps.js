@@ -61,12 +61,10 @@ class Steps extends Component {
     };
 
     onImageLoad = () => {
-        console.log('set image loading to', false);
         this.setState({ imageLoading: false });
     };
 
     getImageLoading() {
-        console.log('image loading is', this.state.imageLoading);
         if (this.state.imageLoading) {
             return <div className="image-placeholder" />;
         }
