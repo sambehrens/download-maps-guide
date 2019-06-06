@@ -1,89 +1,76 @@
 @import './_presets.scss';
 
-.steps {
+.mobile-step {
+  display: flex;
+  flex-direction: column;
   height: 100%;
 
-  .mobile-step {
-    display: flex;
+  .text {
+    flex-shrink: 1;
+    box-sizing: border-box;
+    padding: 1em 0.8em;
     flex-direction: column;
-    height: 100%;
 
-    .text {
-      flex-shrink: 1;
-      box-sizing: border-box;
-      padding: 1em 0.8em;
-      flex-direction: column;
-
-      .steps-title {
-        color: $transparent-3;
-        font-weight: 500;
-        font-size: 0.9em;
-        margin-bottom: 0.5em;
-      }
-
-      .title {
-        font-size: 1.4em;
-        margin-bottom: 0.5em;
-      }
-
-      .description {
-        line-height: 23px;
-        font-size: 0.9em;
-      }
+    .steps-title {
+      color: $transparent-3;
+      font-weight: 500;
+      font-size: 0.9em;
+      margin-bottom: 0.5em;
     }
 
-    .image-container {
-      flex-grow: 1;
+    .title {
+      font-size: 1.4em;
+      margin-bottom: 0.5em;
+    }
+
+    .description {
+      line-height: 23px;
+      font-size: 0.9em;
+    }
+  }
+
+  .image-container {
+    flex-grow: 1;
+    margin-bottom: 1em;
+    position: relative;
+
+    .image {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      border-radius: 1em;
+      max-width: 100%;
+      max-height: 100%;
+      width: auto;
+      height: auto;
+      display: none;
+
+      -webkit-box-shadow: 0px 0px 52px -9px rgba(194, 194, 194, 0.8);
+      -moz-box-shadow: 0px 0px 52px -9px rgba(194, 194, 194, 0.8);
+      box-shadow: 0px 0px 52px -9px rgba(194, 194, 194, 0.8);
+
+      &.loaded {
+        display: block;
+        animation: fade-in 0.5s;
+      }
+    }
+  }
+
+  .navigation-panel {
+    .buttons {
       margin-bottom: 1em;
-      position: relative;
+      display: flex;
 
-      .image {
-        position: absolute;
-        left: 50%;
-        transform: translateX(-50%);
-        border-radius: 1em;
-        max-width: 100%;
-        max-height: 100%;
-        width: auto;
-        height: auto;
-        display: none;
-
-        -webkit-box-shadow: 0px 0px 52px -9px rgba(194, 194, 194, 0.8);
-        -moz-box-shadow: 0px 0px 52px -9px rgba(194, 194, 194, 0.8);
-        box-shadow: 0px 0px 52px -9px rgba(194, 194, 194, 0.8);
-
-        &.loaded {
-          display: block;
-          animation: fade-in 0.5s;
+      .button {
+        flex-grow: 1;
+        &:first-child {
+          margin-right: 1em;
         }
       }
     }
 
-    .navigation-panel {
-      .buttons {
-        margin-bottom: 1em;
-        display: flex;
-
-        .button {
-          flex-grow: 1;
-          &:first-child {
-            margin-right: 1em;
-          }
-        }
-      }
-
-      .progress-wrapper {
-        margin-bottom: 1em;
-      }
+    .progress-wrapper {
+      margin-bottom: 1em;
     }
-  }
-}
-
-@keyframes fade-in {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
   }
 }

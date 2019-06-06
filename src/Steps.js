@@ -107,7 +107,7 @@ class Steps extends Component {
             return this.getMobileStep({ title, description, image, imageAltText });
         }
         return (
-            <div className="step">
+            <div className="desktop-step">
                 <div className="image-container">
                     {this.getImageLoading()}
                     {this.getImage({ image, imageAltText })}

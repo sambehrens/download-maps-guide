@@ -24,19 +24,9 @@ code {
 }
 
 .app-container {
-  position: relative;
   margin: 0 auto;
   width: 100%;
-  max-width: 600px;
-  height: 600px;
-  top: 50%;
-  transform: translateY(-50%);
-
-  @media screen and (max-width: $mobile) {
-    top: 0;
-    transform: none;
-    height: 100%;
-  }
+  height: 100%;
 }
 
 .hidden {
@@ -46,5 +36,6 @@ code {
 @import 'buttons.scss';
 @import 'progressBar.scss';
 @import 'loading.scss';
+@import 'desktopSteps.scss';
 @import 'mobileSteps.scss';
 @import 'steps.scss';
